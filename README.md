@@ -1,2 +1,2 @@
-# Projeto-Banc-rio
+# Projeto-Bancario
 Projeto bancário com aplicativo
