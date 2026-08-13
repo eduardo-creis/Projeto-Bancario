@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FinanSys - Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         MENU LATERAL
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">✓</div>
+            <span>Dobby</span>
+        </div>
+
+        <nav class="menu">
+
+            <a href="#" class="menu-item ativo">
+                <span>▦</span>
+                Dashboard
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>↔</span>
+                Transações
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>◉</span>
+                Categorias
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>🎯</span>
+                Metas
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>▥</span>
+                Relatórios
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>⚙</span>
+                Configurações
+            </a>
+
+        </nav>
+
+        <button class="btn-sair">
+            ↪ Sair
+        </button>
+
+    </aside>
+
+
+    <!-- =========================
+         CONTEÚDO PRINCIPAL
+    ========================== -->
+
+    <main class="main">
+
+        <!-- CABEÇALHO -->
+
+        <header class="header">
+
+            <div>
+
+                <h1>
+                    Olá, <span id="nomeUsuario">Cliente</span>! 👋
+                </h1>
+
+                <p>
+                    Aqui está o resumo das suas finanças.
+                </p>
+
+            </div>
+
+            <div class="mes-atual">
+                <span id="mesAtual"></span>
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             BOTÃO ADICIONAR
+        ========================== -->
+
+        <div class="acoes">
+
+            <button id="btnAdicionar" class="btn-adicionar">
+                + Adicionar transação
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             CARDS
+        ========================== -->
+
+        <section class="cards">
+
+            <!-- SALDO -->
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <span class="card-titulo">
+                            Saldo atual
+                        </span>
+
+                        <h2 id="saldo">
+                            R$ 0,00
+                        </h2>
+
+                    </div>
+
+                    <div class="icone verde">
+                        $
+                    </div>
+
+                </div>
+
+                <p id="variacaoSaldo" class="card-descricao">
+                    Seu saldo atual
+                </p>
+
+                <div class="linha-grafico verde-grafico">
+                    <span></span>
+                </div>
+
+            </div>
+
+
+            <!-- ENTRADAS -->
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <span class="card-titulo">
+                            Entradas
+                        </span>
+
+                        <h2 id="entradas">
+                            R$ 0,00
+                        </h2>
+
+                    </div>
+
+                    <div class="icone azul">
+                        ↓
+                    </div>
+
+                </div>
+
+                <p class="card-descricao">
+                    Neste mês
+                </p>
+
+                <div class="linha-grafico azul-grafico">
+                    <span></span>
+                </div>
+
+            </div>
+
+
+            <!-- SAÍDAS -->
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <span class="card-titulo">
+                            Saídas
+                        </span>
+
+                        <h2 id="saidas">
+                            R$ 0,00
+                        </h2>
+
+                    </div>
+
+                    <div class="icone vermelho">
+                        ↑
+                    </div>
+
+                </div>
+
+                <p class="card-descricao">
+                    Neste mês
+                </p>
+
+                <div class="linha-grafico vermelho-grafico">
+                    <span></span>
+                </div>
+
+            </div>
+
+
+            <!-- METAS -->
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <div>
+
+                        <span class="card-titulo">
+                            Metas ativas
+                        </span>
+
+                        <h2 id="quantidadeMetas">
+                            0
+                        </h2>
+
+                    </div>
+
+                    <div class="icone roxo">
+                        ✓
+                    </div>
+
+                </div>
+
+                <p id="metasDescricao" class="card-descricao">
+                    Nenhuma meta cadastrada
+                </p>
+
+                <div class="barra">
+
+                    <div id="progressoMetas"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PAINÉIS
+        ========================== -->
+
+        <section class="painel-grid">
+
+
+            <!-- GASTOS POR CATEGORIA -->
+
+            <div class="painel">
+
+                <div class="painel-header">
+
+                    <div>
+
+                        <h3>
+                            Gastos por categoria
+                        </h3>
+
+                        <span>
+                            Este mês
+                        </span>
+
+                    </div>
+
+                    <button class="btn-link">
+                        Ver mais
+                    </button>
+
+                </div>
+
+                <div class="categorias-container">
+
+                    <div class="donut" id="donut">
+
+                        <div class="donut-centro">
+
+                            <strong id="totalGastos">
+                                R$ 0
+                            </strong>
+
+                            <span>
+                                total
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="legendaCategorias"
+                        class="legenda">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ÚLTIMAS TRANSAÇÕES -->
+
+            <div class="painel">
+
+                <div class="painel-header">
+
+                    <div>
+
+                        <h3>
+                            Últimas transações
+                        </h3>
+
+                        <span>
+                            Seus lançamentos
+                        </span>
+
+                    </div>
+
+                    <button class="btn-link">
+                        Ver todas
+                    </button>
+
+                </div>
+
+                <div id="listaTransacoes" class="lista-transacoes">
+
+                    <div class="sem-transacoes">
+
+                        <div>📋</div>
+
+                        <p>
+                            Nenhuma transação cadastrada.
+                        </p>
+
+                        <small>
+                            Clique em "Adicionar transação"
+                            para começar.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             METAS
+        ========================== -->
+
+        <section class="painel metas-painel">
+
+            <div class="painel-header">
+
+                <div>
+
+                    <h3>
+                        Minhas metas
+                    </h3>
+
+                    <span>
+                        Acompanhe seus objetivos financeiros
+                    </span>
+
+                </div>
+
+                <button
+                    id="btnAdicionarMeta"
+                    class="btn-adicionar pequeno">
+
+                    + Nova meta
+
+                </button>
+
+            </div>
+
+            <div
+                id="listaMetas"
+                class="lista-metas">
+
+                <div class="sem-metas">
+
+                    <p>
+                        Nenhuma meta cadastrada.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         MODAL TRANSAÇÃO
+    ========================== -->
+
+    <div id="modalTransacao" class="modal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2>
+                        Adicionar transação
+                    </h2>
+
+                    <p>
+                        Registre uma entrada ou saída.
+                    </p>
+
+                </div>
+
+                <button
+                    id="fecharModal"
+                    class="fechar">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="formTransacao">
+
+
+                <!-- TIPO -->
+
+                <label>
+                    Tipo
+                </label>
+
+                <div class="tipo-container">
+
+                    <label class="tipo-option entrada-option">
+
+                        <input
+                            type="radio"
+                            name="tipo"
+                            value="entrada"
+                            checked
+                        >
+
+                        <span>
+                            ↑ Entrada
+                        </span>
+
+                    </label>
+
+
+                    <label class="tipo-option saida-option">
+
+                        <input
+                            type="radio"
+                            name="tipo"
+                            value="saida"
+                        >
+
+                        <span>
+                            ↓ Saída
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- DESCRIÇÃO -->
+
+                <label for="descricao">
+                    Descrição
+                </label>
+
+                <input
+                    type="text"
+                    id="descricao"
+                    placeholder="Ex: Salário, supermercado..."
+                    required
+                >
+
+
+                <!-- CATEGORIA -->
+
+                <label for="categoria">
+                    Categoria
+                </label>
+
+                <select id="categoria" required>
+
+                    <option value="Salário">
+                        Salário
+                    </option>
+
+                    <option value="Alimentação">
+                        Alimentação
+                    </option>
+
+                    <option value="Transporte">
+                        Transporte
+                    </option>
+
+                    <option value="Moradia">
+                        Moradia
+                    </option>
+
+                    <option value="Lazer">
+                        Lazer
+                    </option>
+
+                    <option value="Saúde">
+                        Saúde
+                    </option>
+
+                    <option value="Educação">
+                        Educação
+                    </option>
+
+                    <option value="Trabalho">
+                        Trabalho
+                    </option>
+
+                    <option value="Outros">
+                        Outros
+                    </option>
+
+                </select>
+
+
+                <!-- VALOR -->
+
+                <label for="valor">
+                    Valor
+                </label>
+
+                <div class="input-valor">
+
+                    <span>
+                        R$
+                    </span>
+
+                    <input
+                        type="number"
+                        id="valor"
+                        placeholder="0,00"
+                        step="0.01"
+                        min="0.01"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DATA -->
+
+                <label for="data">
+                    Data
+                </label>
+
+                <input
+                    type="date"
+                    id="data"
+                    required
+                >
+
+
+                <!-- BOTÕES -->
+
+                <div class="modal-botoes">
+
+                    <button
+                        type="button"
+                        id="cancelarModal"
+                        class="btn-cancelar">
+
+                        Cancelar
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-salvar">
+
+                        Salvar transação
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MODAL META
+    ========================== -->
+
+    <div id="modalMeta" class="modal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2>
+                        Criar nova meta
+                    </h2>
+
+                    <p>
+                        Defina um objetivo financeiro.
+                    </p>
+
+                </div>
+
+                <button
+                    id="fecharModalMeta"
+                    class="fechar">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="formMeta">
+
+                <label for="nomeMeta">
+                    Nome da meta
+                </label>
+
+                <input
+                    type="text"
+                    id="nomeMeta"
+                    placeholder="Ex: Viagem, carro..."
+                    required
+                >
+
+
+                <label for="valorMeta">
+                    Valor desejado
+                </label>
+
+                <div class="input-valor">
+
+                    <span>
+                        R$
+                    </span>
+
+                    <input
+                        type="number"
+                        id="valorMeta"
+                        placeholder="0,00"
+                        min="0.01"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+                <label for="valorGuardado">
+                    Quanto já possui?
+                </label>
+
+                <div class="input-valor">
+
+                    <span>
+                        R$
+                    </span>
+
+                    <input
+                        type="number"
+                        id="valorGuardado"
+                        placeholder="0,00"
+                        min="0"
+                        step="0.01"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <div class="modal-botoes">
+
+                    <button
+                        type="button"
+                        id="cancelarMeta"
+                        class="btn-cancelar">
+
+                        Cancelar
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-salvar">
+
+                        Criar meta
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
